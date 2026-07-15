@@ -137,6 +137,7 @@ class MetricsHandler(BaseHTTPRequestHandler):
 
 
 if __name__ == "__main__":
+    import sys
+    print(f"ONT exporter listening on :{METRICS_PORT}", flush=True)
     server = HTTPServer(("0.0.0.0", METRICS_PORT), MetricsHandler)
-    print(f"ONT exporter listening on :{METRICS_PORT}")
     server.serve_forever()
