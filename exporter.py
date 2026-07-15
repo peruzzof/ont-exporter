@@ -71,6 +71,9 @@ def parse_optical(raw: str) -> dict:
             continue
         key, _, val = line.partition(":")
         key, val = key.strip(), val.strip()
+        # Strip trailing unit hints (dBm), (mV), (mA), (C), etc.
+        if "(" in val:
+            val = val[: val.index("(")].strip()
         try:
             result[key] = float(val) if "." in val else int(val)
         except ValueError:
